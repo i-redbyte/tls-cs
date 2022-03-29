@@ -1,0 +1,3 @@
+/Users/red_byte/CLionProjects/tls_cs/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/red_byte/CLionProjects/tls_cs/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/red_byte/CLionProjects/tls_cs/cmake-build-debug/CMakeFiles/tls_cs.dir
