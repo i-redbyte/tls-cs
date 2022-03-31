@@ -20,3 +20,7 @@ LD_LIBRARY_PATH=/usr/local/opt/openssl@3/lib:"${LD_LIBRARY_PATH}"
 CPATH=/usr/local/opt/openssl@3/include:"${CPATH}"
 PKG_CONFIG_PATH=/usr/local/opt/openssl@3/lib/pkgconfig:"${PKG_CONFIG_PATH}"
 export LD_LIBRARY_PATH CPATH PKG_CONFIG_PATH
+
+## Generate cert
+
+openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout [KEY_NAME].pem -out [CERT_NAME].pem
