@@ -14,3 +14,9 @@ MacOs prebuild steeps:
 8) export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
 9) export LDFLAGS="-L/usr/local/opt/gsl/lib"
 10) export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
+
+alternative:
+LD_LIBRARY_PATH=/usr/local/opt/openssl@3/lib:"${LD_LIBRARY_PATH}"
+CPATH=/usr/local/opt/openssl@3/include:"${CPATH}"
+PKG_CONFIG_PATH=/usr/local/opt/openssl@3/lib/pkgconfig:"${PKG_CONFIG_PATH}"
+export LD_LIBRARY_PATH CPATH PKG_CONFIG_PATH
