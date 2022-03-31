@@ -45,7 +45,7 @@ int isRoot()
 }
 SSL_CTX* InitServerCTX(void)
 {
-    SSL_METHOD *method;
+    const SSL_METHOD *method;
     SSL_CTX *ctx;
     OpenSSL_add_all_algorithms();
     SSL_load_error_strings();
