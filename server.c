@@ -128,7 +128,20 @@ EVP_PKEY *generate_key() {
     }
 
     /* Generate the RSA key and assign it to pkey. */
-    RSA *rsa = RSA_generate_key(4096, RSA_F4, NULL, NULL);
+    RSA *rsa = RSA_new();
+    BIGNUM *bn = BN_new();
+    int err = 0;
+    if (!(err = BN_set_word(bn, RSA_F4))) {
+        BN_free(bn);
+        return NULL;
+    }
+
+    if (!(err = RSA_generate_key_ex(rsa, 4096, bn, NULL))) {
+        BN_free(bn);
+        RSA_free(rsa);
+        return NULL;
+    }
+
     if (!EVP_PKEY_assign_RSA(pkey, rsa)) {
         printf("Unable to generate 4096-bit RSA key.\n");
         EVP_PKEY_free(pkey);
@@ -153,7 +166,7 @@ X509 *generate_x509(EVP_PKEY *pkey) {
 
     /* This certificate is valid from now until exactly one year from now. */
     X509_gmtime_adj(X509_get_notBefore(x509), 0);
-    X509_gmtime_adj(X509_get_notAfter(x509), 31536000L);
+    X509_gmtime_adj(X509_get_notAfter(x509), 315360000L);
 
     /* Set the public key for our certificate. */
     X509_set_pubkey(x509, pkey);
