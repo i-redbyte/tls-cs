@@ -1,10 +1,8 @@
-#include <errno.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
-#include <sys/types.h>
 #include <netinet/in.h>
 #include <resolv.h>
 #include "openssl/ssl.h"
@@ -130,7 +128,7 @@ EVP_PKEY *generate_key() {
     }
 
     /* Generate the RSA key and assign it to pkey. */
-    RSA *rsa = RSA_generate_key(2048, RSA_F4, NULL, NULL);
+    RSA *rsa = RSA_generate_key(4096, RSA_F4, NULL, NULL);
     if (!EVP_PKEY_assign_RSA(pkey, rsa)) {
         printf("Unable to generate 2048-bit RSA key.\n");
         EVP_PKEY_free(pkey);
