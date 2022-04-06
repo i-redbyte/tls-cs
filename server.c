@@ -130,7 +130,7 @@ EVP_PKEY *generate_key() {
     /* Generate the RSA key and assign it to pkey. */
     RSA *rsa = RSA_generate_key(4096, RSA_F4, NULL, NULL);
     if (!EVP_PKEY_assign_RSA(pkey, rsa)) {
-        printf("Unable to generate 2048-bit RSA key.\n");
+        printf("Unable to generate 4096-bit RSA key.\n");
         EVP_PKEY_free(pkey);
         return NULL;
     }
