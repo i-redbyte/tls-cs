@@ -199,7 +199,7 @@ int write_to_disk(EVP_PKEY *pkey, X509 *x509) {
     /* Open the PEM file for writing the certificate to disk. */
     FILE *x509_file = fopen("cert.pem", "wb");
     if (!x509_file) {
-        printf("Unable to open cert.pem for writing.\n");
+        printf("Unable to open \"cert.pem\" for writing.\n");
         return 0;
     }
 
@@ -254,10 +254,14 @@ int main(int count, char *Argc[]) {
         exit(0);
     }
     SSL_library_init();
-    int ret = GenerateX509Cert();
-    printf("-------GenerateX509Cert: %d \n", ret);
+    if (access("cert.pem", F_OK) == 0) {
+        printf("\ncert.pem exists\n");
+    } else {
+        int ret = GenerateX509Cert();
+        printf("-------GenerateX509Cert-------: %d \n", ret);
+    }
     portnum = Argc[1];
-    printf("port in now: %d \n", atoi(Argc[1]));
+    printf("used port: %d \n", atoi(Argc[1]));
     ctx = InitServerCTX();
     LoadCertificates(ctx, "cert.pem", "key.pem");
 
